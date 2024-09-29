@@ -1,0 +1,21 @@
+kafka:
+  networkType: tcp
+  address: "127.0.0.1:29092"
+  productCreationRequest:
+    topic: create.raw_product.product
+
+mongodb:
+  address: "127.0.0.1:27017"
+  dbName: dev
+
+  collections:
+    products:
+      name: ProductsCollection
+
+sql:
+  address: "127.0.0.1"
+  username: root
+  password: myrootpassword
+  dbName: dev
+
+  driverName: postgres

@@ -1,0 +1,10 @@
+server:
+  host: 127.0.0.1
+  port: 8082
+
+kafka:
+  networkType: tcp
+  address: "127.0.0.1:29092"
+  productCreationRequest:
+    topic: create.raw_product.product
+    partition: 0
