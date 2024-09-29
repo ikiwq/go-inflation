@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"github.com/ikiwq/go-inflation/internal/product-queue-handler/domain"
+	"github.com/ikiwq/go-inflation/internal/queue-handler/domain"
 	"github.com/jmoiron/sqlx"
 	"golang.org/x/net/context"
 )

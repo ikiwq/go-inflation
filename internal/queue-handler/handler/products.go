@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/ikiwq/go-inflation/internal/product-queue-handler/domain"
+	"github.com/ikiwq/go-inflation/internal/queue-handler/domain"
 	"github.com/ikiwq/go-inflation/pkg/types"
 )
 

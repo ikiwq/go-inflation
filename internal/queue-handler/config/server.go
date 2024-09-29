@@ -10,7 +10,7 @@ type MongoDBCollection struct {
 	name string `yaml:"name"`
 }
 
-type ProductQueueHandlerConfig struct {
+type QueueHandlerConfig struct {
 	Kafka struct {
 		NetworkType                  string `yaml:"networkType"`
 		Address                      string `yaml:"address"`
@@ -38,8 +38,8 @@ type ProductQueueHandlerConfig struct {
 	}
 }
 
-func NewProductQueueHandlerConfig(configPath string) (*ProductQueueHandlerConfig, error) {
-	config := &ProductQueueHandlerConfig{}
+func NewQueueHandlerConfig(configPath string) (*QueueHandlerConfig, error) {
+	config := &QueueHandlerConfig{}
 
 	file, err := os.Open(configPath)
 	if err != nil {

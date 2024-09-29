@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"github.com/ikiwq/go-inflation/internal/product-queue-handler/domain"
+	"github.com/ikiwq/go-inflation/internal/queue-handler/domain"
 	"go.mongodb.org/mongo-driver/mongo"
 	"golang.org/x/net/context"
 )

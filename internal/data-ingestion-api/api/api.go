@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/ikiwq/go-inflation/internal/product-queue-api/config"
+	"github.com/ikiwq/go-inflation/internal/data-ingestion-api/config"
 	"github.com/ikiwq/go-inflation/pkg/queue"
 	"github.com/segmentio/kafka-go"
 )
@@ -17,7 +17,7 @@ type api struct {
 	productKafkaConn *kafka.Conn
 }
 
-func NewApi(config config.ProductQueueApiConfig) *api {
+func NewApi(config config.DataIngestionApiConfig) *api {
 	httpClient := &http.Client{}
 
 	productKafkaConn := queue.InitConnection(

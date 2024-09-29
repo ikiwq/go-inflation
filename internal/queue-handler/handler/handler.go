@@ -3,9 +3,9 @@ package handler
 import (
 	"time"
 
-	"github.com/ikiwq/go-inflation/internal/product-queue-handler/config"
-	"github.com/ikiwq/go-inflation/internal/product-queue-handler/domain"
-	"github.com/ikiwq/go-inflation/internal/product-queue-handler/repository"
+	"github.com/ikiwq/go-inflation/internal/queue-handler/config"
+	"github.com/ikiwq/go-inflation/internal/queue-handler/domain"
+	"github.com/ikiwq/go-inflation/internal/queue-handler/repository"
 	"github.com/ikiwq/go-inflation/pkg/db"
 	"github.com/ikiwq/go-inflation/pkg/queue"
 	"github.com/jmoiron/sqlx"
@@ -25,7 +25,7 @@ type handler struct {
 	productPriceHistoryRepository domain.ProductPriceHistorySqlRepository
 }
 
-func NewHandler(config *config.ProductQueueHandlerConfig) *handler {
+func NewHandler(config *config.QueueHandlerConfig) *handler {
 	productKafkaReader := queue.InitReader(
 		[]string{config.Kafka.Address},
 		config.Kafka.ProductCreationRequestConfig.Topic,
@@ -52,17 +52,13 @@ func NewHandler(config *config.ProductQueueHandlerConfig) *handler {
 	productCollection := mongoDatabase.Collection("ProductsCollection")
 	mongoProductRepository := repository.NewMongoProductRepository(productCollection)
 
-	
-
 	return &handler{
-		productKafkaReader:        productKafkaReader,
+		productKafkaReader: productKafkaReader,
 
-		sqlClient:                 sqlClient,
-		mongoDatabase:             mongoDatabase,
+		sqlClient:     sqlClient,
+		mongoDatabase: mongoDatabase,
 
 		productDocumentRepository: mongoProductRepository,
-
-		productRepository: ,
 	}
 }
 

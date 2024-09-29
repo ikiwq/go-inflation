@@ -6,7 +6,7 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-type ProductQueueApiConfig struct {
+type DataIngestionApiConfig struct {
 	Server struct {
 		Host string `yaml:"host"`
 		Port string `yaml:"port"`
@@ -22,8 +22,8 @@ type ProductQueueApiConfig struct {
 	} `yaml:"kafka"`
 }
 
-func NewProductQueueApiConfiguration(configPath string) (*ProductQueueApiConfig, error) {
-	config := &ProductQueueApiConfig{}
+func NewDataIngestionApiConfiguration(configPath string) (*DataIngestionApiConfig, error) {
+	config := &DataIngestionApiConfig{}
 
 	file, err := os.Open(configPath)
 	if err != nil {
