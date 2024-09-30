@@ -12,7 +12,7 @@ type Product struct {
 	EAN          string    `db:"ean"`
 	ExternalId   string    `db:"external_id"`
 	Name         string    `db:"name"`
-	Description  string    `db:"Description"`
+	Description  string    `db:"description"`
 	Brand        string    `db:"brand"`
 	Image        string    `db:"image"`
 	Type         string    `db:"type"`
@@ -21,8 +21,9 @@ type Product struct {
 }
 
 type ProductSqlRepository interface {
-	Save(context.Context, Product) (Product, error)
-	FindByEan(context.Context, string) (Product, error)
+	Save(context.Context, *Product) (*Product, error)
+	Update(context.Context, *Product) (*Product, error)
+	FindByEan(context.Context, string) (*Product, error)
 }
 
 type ProductPriceHistory struct {
@@ -35,7 +36,7 @@ type ProductPriceHistory struct {
 }
 
 type ProductPriceHistorySqlRepository interface {
-	Save(context.Context, ProductPriceHistory) (ProductPriceHistory, error)
+	Save(context.Context, *ProductPriceHistory) (*ProductPriceHistory, error)
 }
 
 type ProductDocument struct {
@@ -53,5 +54,5 @@ type ProductDocument struct {
 }
 
 type ProductDocumentMongoRepository interface {
-	Save(context.Context, ProductDocument) (*mongo.InsertOneResult, error)
+	Save(context.Context, *ProductDocument) (*mongo.InsertOneResult, error)
 }

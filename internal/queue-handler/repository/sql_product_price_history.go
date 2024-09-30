@@ -15,7 +15,7 @@ func NewProductPriceHistoryRepository(dbClient *sqlx.DB) domain.ProductPriceHist
 	return &productPriceHistoryRepository{dbClient: dbClient}
 }
 
-func (r *productPriceHistoryRepository) Save(ctx context.Context, productPriceHistory domain.ProductPriceHistory) (domain.ProductPriceHistory, error) {
+func (r *productPriceHistoryRepository) Save(ctx context.Context, productPriceHistory *domain.ProductPriceHistory) (*domain.ProductPriceHistory, error) {
 	query := `
 		INSERT INTO products_price_history VALUES(
 			:product_id, :price, :discounted_price, :registered_at, :save_time
@@ -24,7 +24,7 @@ func (r *productPriceHistoryRepository) Save(ctx context.Context, productPriceHi
 
 	res, err := r.dbClient.NamedExecContext(ctx, query, productPriceHistory)
 	if err != nil {
-		return domain.ProductPriceHistory{}, err
+		return nil, err
 	}
 
 	lastInsertedId, _ := res.LastInsertId()

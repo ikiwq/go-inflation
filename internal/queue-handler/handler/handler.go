@@ -52,6 +52,8 @@ func NewHandler(config *config.QueueHandlerConfig) *handler {
 	productCollection := mongoDatabase.Collection("ProductsCollection")
 	mongoProductRepository := repository.NewMongoProductRepository(productCollection)
 
+	productRepository := repository.NewSqlProductRepository(sqlClient)
+
 	return &handler{
 		productKafkaReader: productKafkaReader,
 
@@ -59,6 +61,7 @@ func NewHandler(config *config.QueueHandlerConfig) *handler {
 		mongoDatabase: mongoDatabase,
 
 		productDocumentRepository: mongoProductRepository,
+		productRepository:         productRepository,
 	}
 }
 

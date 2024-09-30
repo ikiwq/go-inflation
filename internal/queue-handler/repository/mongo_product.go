@@ -14,7 +14,7 @@ func NewMongoProductRepository(mongoCollection *mongo.Collection) domain.Product
 	return &productDocumentRepository{mongoCollection: mongoCollection}
 }
 
-func (r *productDocumentRepository) Save(ctx context.Context, productDocument domain.ProductDocument) (*mongo.InsertOneResult, error) {
+func (r *productDocumentRepository) Save(ctx context.Context, productDocument *domain.ProductDocument) (*mongo.InsertOneResult, error) {
 	res, err := r.mongoCollection.InsertOne(ctx, productDocument)
 	return res, err
 }

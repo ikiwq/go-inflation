@@ -29,7 +29,7 @@ type ProductReportMessage struct {
 	CreationTime    time.Time `json:"publishTime"`
 }
 
-func MapSaveRequestToQueueDTO(report ProductReport) ProductReportMessage {
+func MapSaveRequestToQueueDTO(report *ProductReport) ProductReportMessage {
 	return ProductReportMessage{
 		EAN:             report.EAN,
 		ExternalId:      report.ExternalId,
@@ -38,7 +38,7 @@ func MapSaveRequestToQueueDTO(report ProductReport) ProductReportMessage {
 		Price:           report.Price,
 		DiscountedPrice: report.DiscountedPrice,
 		Brand:           report.Brand,
-		Image:           report.Brand,
+		Image:           report.Image,
 		Type:            report.Type,
 		CreationTime:    time.Now(),
 	}

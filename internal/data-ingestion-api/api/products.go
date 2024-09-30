@@ -39,13 +39,17 @@ func (a *api) saveProduct(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	queueDTO := types.MapSaveRequestToQueueDTO(saveRequest)
+	queueDTO := types.MapSaveRequestToQueueDTO(&saveRequest)
 	dtoBytes, err := json.Marshal(queueDTO)
 	if err != nil {
 		http.Error(w, "Unexpected error happened while handling save", http.StatusInternalServerError)
 	}
 
-	a.productKafkaConn.Write(dtoBytes)
+	_, err = a.productKafkaConn.Write(dtoBytes)
+	if err != nil {
+		fmt.Print("Error while saving message", err)
+		http.Error(w, "Unexpected error happened while handling publishing to the queue", http.StatusInternalServerError)
+	}
 
 	utils.WriteJSON(w, http.StatusCreated, queueDTO)
 }
